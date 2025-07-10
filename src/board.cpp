@@ -1,7 +1,9 @@
 #include <cassert>
 #include <iostream>
-
 #include "board/board_utils.h"
+
+PieceType getPieceTypeAt(const Bitboard& board, Square sq);
+Color getPieceColorAt(const Bitboard& board, Square sq);
 
 void addPiece(Bitboard &board, PieceType type, Color color, Square sq) {
   U64 sq_bb = squareToBitboard(sq);

@@ -1,8 +1,6 @@
 #ifndef BOARD_UTILS_H
 #define BOARD_UTILS_H
 
-#pragma once
-
 #include <iostream>
 #include <cstdint>
 #include "types/types.h"
@@ -18,6 +16,7 @@ inline int countSetBits(U64 bb) {
 inline Square getLSB(U64 bb) {
   return static_cast<Square>(__builtin_ctzll(bb));
 }
+
 inline void clearLSB(U64 &bb) {
   bb &= (bb - 1);
 }
@@ -74,20 +73,6 @@ inline bool isEmpty(const GameState &state, Square sq)
   return (state.board.emptySquares & squareToBitboard(sq));
 }
 
-// Function to remove a piece
-void removePiece(Bitboard& board, PieceType type, Color color, Square sq);
-// Function to get piece type at a square (already exists in board.cpp, but declare here)
-PieceType getPieceTypeAt(const Bitboard& board, Square sq);
-// Function to get piece color at a square (already exists in board.cpp, but declare here)
-Color getPieceColorAt(const Bitboard& board, Square sq);
-
-// The core makeMove function
-void makeMove(GameState& state, const Move& move);
-
-// --- Legality Check Helpers ---
-bool isKingInCheck(Color kingColor, const GameState& state);
-
 bool isSquareAttacked(const GameState &state, Square sq, Color attackingColor);
-bool isLegalMove(const GameState &state, const Move &move);
 
 #endif // BOARD_UTILS_H
